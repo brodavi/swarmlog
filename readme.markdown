@@ -72,6 +72,9 @@ Create a [hyperlog][4] instance `log` from:
 * `opts.secretKey` - (or `opts.private`) - ed25519 private key
 * `opts.keys` - object, another place to put `publicKey/public` and
 `secretKey/privateKey/private`
+* `opts.peerStream(peer)` - optional function that should return the stream to
+use for a peer swarm connection. Use this if you want to multiplex some other
+protocols on the same swarm alongside the hyperlog replication.
 
 Public and private keys are either a hex string, a binary `Buffer`, or a
 base64-encoded string ending with `'.ed25519'` (ssb-keys style).
