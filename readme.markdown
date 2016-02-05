@@ -36,7 +36,7 @@ setInterval(function () {
 and a follower that will consume the log:
 
 ```js
-var swarmlog = require('../')
+var swarmlog = require('swarmlog')
 var memdb = require('memdb')
 
 var log = swarmlog({
