@@ -5,9 +5,9 @@ var hyperlog = require('hyperlog')
 var defined = require('defined')
 
 var defaultHubs = [
-  'https://signalhub.mafintosh.com/',
-  'https://instant.io:8080/',
-  'https://signalhub.publicbits.org/'
+  'https://signalhub.mafintosh.com',
+  'https://instant.io:8080',
+  'https://signalhub.publicbits.org'
 ]
 
 module.exports = function (opts) {
@@ -26,7 +26,7 @@ module.exports = function (opts) {
   }
   var topic = kopts.publicKey.toString('hex')
   var log = hyperlog(opts.db, hsodium(opts.sodium, kopts, opts))
-  var hub = signalhub(topic, opts.hubs || defaultHubs)
+  var hub = signalhub('peerlog.' + topic, opts.hubs || defaultHubs)
   var sw = swarm(hub, opts)
   sw.on('peer', function (peer, id) {
     peer.pipe(log.replicate({ live: true })).pipe(peer)
