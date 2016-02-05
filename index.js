@@ -24,8 +24,11 @@ module.exports = function (opts) {
   var log = hyperlog(opts.db, hsodium(opts.sodium, kopts, opts))
   var hub = signalhub('swarmlog.' + topic, opts.hubs)
   var sw = swarm(hub, opts)
+  var peerStream = opts.peerStream || function (peer) { return peer }
+
   sw.on('peer', function (peer, id) {
-    pump(peer, toBuffer(), log.replicate({ live: true }), peer)
+    var stream = peerStream(peer)
+    pump(stream, toBuffer(), log.replicate({ live: true }), stream)
   })
   return log
 }
