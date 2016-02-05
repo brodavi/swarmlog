@@ -1,0 +1,30 @@
+{
+  "name": "swarmlog",
+  "version": "1.0.0",
+  "description": "create a p2p webrtc swarm around a hyperlog",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "defined": "^1.0.0",
+    "hyperlog": "^4.7.0",
+    "hyperlog-sodium": "^2.0.0",
+    "pump": "^1.0.1",
+    "signalhub": "^4.3.1",
+    "through2": "^2.0.0",
+    "webrtc-swarm": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "keywords": [
+    "swarm",
+    "p2p",
+    "webrtc",
+    "hyperlog"
+  ],
+  "author": "substack",
+  "license": "BSD"
+}

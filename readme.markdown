@@ -1,6 +1,6 @@
 # swarmlog
 
-create a p2p swarm around a [hyperlog][4]
+create a p2p webrtc swarm around a [hyperlog][4]
 
 # example
 
