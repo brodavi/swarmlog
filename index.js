@@ -3,6 +3,8 @@ var signalhub = require('signalhub')
 var hsodium = require('hyperlog-sodium')
 var hyperlog = require('hyperlog')
 var defined = require('defined')
+var pump = require('pump')
+var through = require('through2')
 
 var defaultHubs = [
   'https://signalhub.mafintosh.com',
@@ -29,7 +31,8 @@ module.exports = function (opts) {
   var hub = signalhub('peerlog.' + topic, opts.hubs || defaultHubs)
   var sw = swarm(hub, opts)
   sw.on('peer', function (peer, id) {
-    peer.pipe(log.replicate({ live: true })).pipe(peer)
+    console.log('PEER!')
+    pump(peer, toBuffer(), log.replicate({ live: true }), peer)
   })
   return log
 }
@@ -41,4 +44,10 @@ function normkey (id) {
   } else if (Buffer.isBuffer(id)) {
     return id
   } else if (id) return Buffer(id, 'hex')
+}
+
+function toBuffer () {
+  return through.obj(function (buf, enc, next) {
+    next(null, Buffer.isBuffer(buf) ? buf : Buffer(buf))
+  })
 }

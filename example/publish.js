@@ -3,8 +3,8 @@ var memdb = require('memdb')
 
 var log = peerlog({
   keys: require('./keys.json'),
-  sodium: require('chloride'),
-  wrtc: require('wrtc'),
+  sodium: require('chloride/browser'),
+  //wrtc: require('wrtc'),
   db: memdb(),
   valueEncoding: 'json'
 })
