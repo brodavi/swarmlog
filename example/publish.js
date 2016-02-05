@@ -1,7 +1,7 @@
-var peerlog = require('../')
+var swarmlog = require('../')
 var memdb = require('memdb')
 
-var log = peerlog({
+var log = swarmlog({
   keys: require('./keys.json'),
   sodium: require('chloride/browser'),
   db: memdb(),
