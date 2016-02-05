@@ -7,7 +7,8 @@ var log = peerlog({
   sodium: require('chloride/browser'),
   //wrtc: require('wrtc'),
   db: memdb(),
-  valueEncoding: 'json'
+  valueEncoding: 'json',
+  hubs: [ 'https://signalhub.mafintosh.com' ]
 })
 
 log.createReadStream({ live: true })

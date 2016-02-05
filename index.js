@@ -3,14 +3,8 @@ var signalhub = require('signalhub')
 var hsodium = require('hyperlog-sodium')
 var hyperlog = require('hyperlog')
 var defined = require('defined')
-var pump = require('pump')
 var through = require('through2')
-
-var defaultHubs = [
-  'https://signalhub.mafintosh.com',
-  'https://instant.io:8080',
-  'https://signalhub.publicbits.org'
-]
+var pump = require('pump')
 
 module.exports = function (opts) {
   if (typeof opts === 'string') opts = { id: opts }
@@ -28,10 +22,9 @@ module.exports = function (opts) {
   }
   var topic = kopts.publicKey.toString('hex')
   var log = hyperlog(opts.db, hsodium(opts.sodium, kopts, opts))
-  var hub = signalhub('peerlog.' + topic, opts.hubs || defaultHubs)
+  var hub = signalhub('peerlog.' + topic, opts.hubs)
   var sw = swarm(hub, opts)
   sw.on('peer', function (peer, id) {
-    console.log('PEER!')
     pump(peer, toBuffer(), log.replicate({ live: true }), peer)
   })
   return log

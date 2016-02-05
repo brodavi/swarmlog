@@ -4,15 +4,13 @@ var memdb = require('memdb')
 var log = peerlog({
   keys: require('./keys.json'),
   sodium: require('chloride/browser'),
-  //wrtc: require('wrtc'),
   db: memdb(),
-  valueEncoding: 'json'
+  valueEncoding: 'json',
+  hubs: [ 'https://signalhub.mafintosh.com' ]
 })
 
-var msg = process.argv.slice(2).join(' ')
-log.append({ time: Date.now(), msg: msg }, onpublish)
-
-function onpublish (err, node) {
-  if (err) console.error(err)
-  else console.log(node.key)
-}
+var times = 0
+setInterval(function () {
+  log.append({ time: Date.now(), msg: 'HELLO!x' + times })
+  times++
+}, 1000)
