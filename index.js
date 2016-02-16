@@ -31,6 +31,7 @@ module.exports = function (opts) {
     var stream = peerStream(peer)
     pump(stream, toBuffer(), log.replicate({ live: true }), stream)
   })
+  log.swarm = sw
   return log
 }
 

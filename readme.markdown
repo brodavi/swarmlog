@@ -85,6 +85,10 @@ following.
 Optionally provide a [wrtc][3] instance as `opts.wrtc` to create a swarmlog in
 node.
 
+## log.swarm
+
+the underlying [webrtc-swarm][7]
+
 # p2p
 
 Currently the swarm relies on [signalhub][1] to assist in the webrtc swarm
@@ -107,3 +111,4 @@ BSD
 [4]: https://npmjs.com/package/hyperlog
 [5]: https://npmjs.com/package/levelup
 [6]: https://npmjs.com/package/level-browserify
+[7]: https://npmjs.com/package/webrtc-swarm
