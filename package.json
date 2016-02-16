@@ -1,6 +1,6 @@
 {
   "name": "swarmlog",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "create a p2p webrtc swarm around a hyperlog",
   "main": "index.js",
   "directories": {
