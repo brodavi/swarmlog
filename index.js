@@ -32,6 +32,7 @@ module.exports = function (opts) {
     pump(stream, toBuffer(), log.replicate({ live: true }), stream)
   })
   log.swarm = sw
+  log.hub = hub
   return log
 }
 

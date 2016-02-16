@@ -87,7 +87,11 @@ node.
 
 ## log.swarm
 
-the underlying [webrtc-swarm][7]
+the underlying [webrtc-swarm][7] instance
+
+## log.hub
+
+the underlying [signalhub][1] instance
 
 # p2p
 
