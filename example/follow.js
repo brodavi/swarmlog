@@ -2,9 +2,8 @@ var swarmlog = require('../')
 var memdb = require('memdb')
 
 var log = swarmlog({
-  publicKey: require('./keys.json').public,
-  sodium: require('chloride/browser'),
   db: memdb(),
+  topic: 'mytopic',
   valueEncoding: 'json',
   hubs: [ 'https://signalhub.mafintosh.com' ]
 })

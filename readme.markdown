@@ -1,27 +1,23 @@
-# swarmlog
+# unsigned-swarmlog
 
 create a p2p webrtc swarm around a [hyperlog][4]
 
+NOT cryptographically signed, as per [substack's](https://www.npmjs.com/~substack) original swarmlog. Intended to be used by trusted group.
+
 # example
 
-first generate some ed25519 keys:
-
-```
-$ node -pe "JSON.stringify(require('ssb-keys').generate())" > keys.json
-```
-
-now create a hyperlog publisher that will write a new message every second:
+create a hyperlog publisher that will write a new message every second:
 
 publish.js:
 
 ``` js
-var swarmlog = require('swarmlog')
+var swarmlog = require('unsigned-swarmlog')
 var memdb = require('memdb')
 
 var log = swarmlog({
   keys: require('./keys.json'),
-  sodium: require('chloride/browser'),
   db: memdb(),
+  topic: 'mytopic',
   valueEncoding: 'json',
   hubs: [ 'https://signalhub.mafintosh.com' ]
 })
@@ -36,13 +32,12 @@ setInterval(function () {
 and a follower that will consume the log:
 
 ```js
-var swarmlog = require('swarmlog')
+var swarmlog = require('unsigned-swarmlog')
 var memdb = require('memdb')
 
 var log = swarmlog({
-  publicKey: require('./keys.json').public,
-  sodium: require('chloride/browser'),
   db: memdb(),
+  topic: 'mytopic',
   valueEncoding: 'json',
   hubs: [ 'https://signalhub.mafintosh.com' ]
 })
@@ -56,31 +51,19 @@ log.createReadStream({ live: true })
 # api
 
 ```
-var swarmlog = require('swarmlog')
+var swarmlog = require('unsigned-swarmlog')
 ```
 
 ## var log = swarmlog(opts)
 
 Create a [hyperlog][4] instance `log` from:
 
-* `opts.sodium` - a sodium instance: `require('sodium')` in node or
-`require('chloride/browser')` in the browser
 * `opts.db` - a [leveldb][5] instance (use [level-browserify][6] in the browser)
 * `opts.valueEncoding` - valueEncoding to use for the hyperlog
 * `opts.hubs` - array of [signalhub][1] hubs to use
-* `opts.publicKey` - (or `opts.public`) - ed25519 public key
-* `opts.secretKey` - (or `opts.private`) - ed25519 private key
-* `opts.keys` - object, another place to put `publicKey/public` and
-`secretKey/privateKey/private`
 * `opts.peerStream(peer)` - optional function that should return the stream to
 use for a peer swarm connection. Use this if you want to multiplex some other
 protocols on the same swarm alongside the hyperlog replication.
-
-Public and private keys are either a hex string, a binary `Buffer`, or a
-base64-encoded string ending with `'.ed25519'` (ssb-keys style).
-
-If `opts` is a string it will be interpreted as the `opts.publicKey` for easier
-following.
 
 Optionally provide a [wrtc][3] instance as `opts.wrtc` to create a swarmlog in
 node.
@@ -102,7 +85,7 @@ setup, but ideally in the future this could be replaced or augmented with a
 # install
 
 ```
-npm install swarmlog
+npm install unsigned-swarmlog
 ```
 
 # license

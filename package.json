@@ -1,7 +1,7 @@
 {
-  "name": "swarmlog",
-  "version": "1.4.0",
-  "description": "create a p2p webrtc swarm around a hyperlog",
+  "name": "unsigned-swarmlog",
+  "version": "1.5.0",
+  "description": "create a p2p webrtc swarm around a hyperlog, not cryptographically signed",
   "main": "index.js",
   "directories": {
     "example": "example"
@@ -9,17 +9,14 @@
   "dependencies": {
     "defined": "^1.0.0",
     "hyperlog": "^4.7.0",
-    "hyperlog-sodium": "^2.0.0",
     "pump": "^1.0.1",
     "signalhub": "^4.3.1",
     "through2": "^2.0.0",
     "webrtc-swarm": "^2.3.0"
   },
   "devDependencies": {
-    "chloride": "^2.0.1",
     "memdb": "^1.3.1",
     "signalhub": "^4.3.2",
-    "sodium": "^1.0.22",
     "tape": "^4.4.0",
     "wrtc": "0.0.59"
   },
@@ -32,14 +29,14 @@
     "webrtc",
     "hyperlog"
   ],
-  "author": "substack",
+  "author": "brodavi, original author substack",
   "license": "BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/substack/swarmlog.git"
+    "url": "git+https://github.com/brodavi/unsigned-swarmlog.git"
   },
   "bugs": {
-    "url": "https://github.com/substack/swarmlog/issues"
+    "url": "https://github.com/brodavi/unsigned-swarmlog/issues"
   },
-  "homepage": "https://github.com/substack/swarmlog#readme"
+  "homepage": "https://github.com/brodavi/unsigned-swarmlog#readme"
 }

@@ -1,7 +1,6 @@
 var swarmlog = require('../')
 var memdb = require('memdb')
 var test = require('tape')
-var sodium = require('sodium')
 var signalhub = require('signalhub/server')
 var wrtc = require('wrtc')
 
@@ -11,16 +10,13 @@ test('log', function (t) {
   hub.listen(0, function () {
     var href = 'http://localhost:' + hub.address().port
     var publisher = swarmlog({
-      keys: require('./keys.json'),
-      sodium: sodium,
       wrtc: wrtc,
       db: memdb(),
+      topic: 'mytopic',
       valueEncoding: 'json',
       hubs: [ href ]
     })
     var follower = swarmlog({
-      publicKey: require('./keys.json').public,
-      sodium: sodium,
       wrtc: wrtc,
       db: memdb(),
       valueEncoding: 'json',
